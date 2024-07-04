@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title [ngClass]="{ 'dark-theme': darkModeEnabled }">
+      DevNews Apps
+    </ion-title>
+    <ion-buttons slot="end" style="margin-right: 20px;">
+      <ion-toggle class="icon-custom" mode="ios" (ionChange)="toggleDarkMode($event)" [checked]="darkModeEnabled" labelPlacement="end" style="margin-right: 5px;">Dark</ion-toggle>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="center">
+    <h1>Welcome to DevNews</h1>
+    <p>Your source for the latest news in United State.</p>
+  </div>
+
+  <ion-card *ngIf="featuredArticle">
+    <ion-img [src]="featuredArticle.urlToImage"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ featuredArticle.title }}</ion-card-title>
+      <ion-card-subtitle>{{ featuredArticle.author }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ featuredArticle.description }}</p>
+    </ion-card-content>
+    <ion-row style="justify-content: space-between; margin-right:10px; margin-bottom: 10px;">
+      <ion-button fill="clear" size="small" href="{{ featuredArticle.url }}" target="_blank">Read more..</ion-button>
+      <ion-button (click)="saveFeatured(featuredArticle)">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-row>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center row">
+      <ng-container *ngFor="let article of articles.slice(4, 11)">
+        <ion-col size="12" size-md="6" size-lg="4" *ngIf="article.urlToImage && article.title && article.description">
+          <ion-list>
+            <ion-card class="card">
+              <ion-img [src]="article.urlToImage" class="card-image"></ion-img>
+              <ion-card-header>
+                <ion-card-title>{{ truncateTitle(article.title, 65) }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                {{ truncateDescription(article.description, 200) }}
+              </ion-card-content>
+              <ion-row style="justify-content: space-between; margin-right:20px;">
+                <ion-button fill="clear" size="small" href="{{ article.url }}" target="_blank">Read more..</ion-button>
+                <ion-button (click)="save(article)">
+                  <ion-icon name="heart-outline"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-card>
+          </ion-list>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>  
+</ion-content>

@@ -1,0 +1,30 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+.dark-theme {
+    --ion-background-color: #1c1c1d;
+    --ion-color-base: #ffffff;
+    --ion-text-color: #ffffff;
+    --ion-card-title-color: #ffffff;  /* Warna teks judul kartu */
+    --ion-card-subtitle-color: #ffffff;  /* Warna teks sub-judul kartu */
+    --ion-label-color: #ffffff;
+    ion-card-title {
+        --color: #ffffff;
+    }
+    ion-segment-button {
+        --color: #ffffff;
+    }
+}
+
+.dark-theme .alert-wrapper {
+    background-color: var(--ion-background-color);
+    color: var(--ion-color-base);
+  }
+  
+  .dark-theme .alert-button {
+    color: #0054E9; /* warna teks tombol */
+    --background: var(--ion-background-color); /* warna background tombol */
+  }
+// @import "@ionic/angular/css/palettes/dark.always.css";
+// @import "@ionic/angular/css/palettes/dark.class.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
