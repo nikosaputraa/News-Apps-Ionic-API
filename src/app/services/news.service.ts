@@ -22,4 +22,7 @@ export class NewsService {
     return this.http.get(`${this.apiUrl}?country=${country}&category=${category}&apiKey=${this.apiKey}`);
   }
 
+  searchNews(query: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}?q=${query}&apiKey=${this.apiKey}`);
+  }
 }

@@ -24,6 +24,22 @@ export class Tab1Page implements OnInit {
     this.themeService.setDarkMode(darkModeEnabled);
   }
 
+  searchNews(event: CustomEvent) {
+    const query = (event.target as HTMLInputElement).value;
+    if (query && query.trim() !== '') {
+      this.newsService.searchNews(query).subscribe((data: any) => {
+        this.articles = data.articles; // Mengganti articles dengan hasil pencarian
+        this.featuredArticle = this.articles.length ? this.articles[0] : null; // Mengganti featuredArticle jika diperlukan
+      });
+    } else {
+      // Jika input pencarian kosong, kembalikan ke berita teratas
+      this.newsService.getTopHeadlines().subscribe(data => {
+        this.articles = data.articles;
+        this.featuredArticle = this.articles.length ? this.articles[0] : null;
+      });
+    }
+  }
+  
   ngOnInit() {
     this.darkModeEnabled = this.themeService.isDarkMode();
 

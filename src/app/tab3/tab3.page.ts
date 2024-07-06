@@ -20,6 +20,20 @@ export class Tab3Page implements OnInit {
     this.getCategoryNews();
   }
 
+  searchNews(event: CustomEvent) {
+    const query = (event.target as HTMLInputElement).value;
+    if (query && query.trim() !== '') {
+      this.newsService.searchNews(query).subscribe((data: any) => {
+        this.articles = data.articles;
+      });
+    } else {
+      // Jika input pencarian kosong, kembalikan ke berita teratas
+      this.newsService.getTopHeadlines().subscribe(data => {
+        this.articles = data.articles;
+      });
+    }
+  }
+  
   getCategoryNews() {
     this.newsService.getCategoryNews(this.selectedCategory).subscribe(data => {
       this.articles = data.articles;

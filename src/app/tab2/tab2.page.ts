@@ -20,6 +20,20 @@ export class Tab2Page implements OnInit {
     });
   }
 
+  searchNews(event: CustomEvent) {
+    const query = (event.target as HTMLInputElement).value;
+    if (query && query.trim() !== '') {
+      this.newsService.searchNews(query).subscribe((data: any) => {
+        this.articles = data.articles; // Mengganti articles dengan hasil pencarian
+      });
+    } else {
+      // Jika input pencarian kosong, kembalikan ke berita teratas
+      this.newsService.getTopHeadlines().subscribe(data => {
+        this.articles = data.articles;
+      });
+    }
+  }
+
   async save(article: any) {
     let storedFav = localStorage.getItem('fav');
     let favorites = storedFav ? JSON.parse(storedFav) : [];

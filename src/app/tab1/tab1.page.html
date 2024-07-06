@@ -1,11 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title [ngClass]="{ 'dark-theme': darkModeEnabled }">
-      DevNews Apps
-    </ion-title>
-    <ion-buttons slot="end" style="margin-right: 20px;">
-      <ion-toggle class="icon-custom" mode="ios" (ionChange)="toggleDarkMode($event)" [checked]="darkModeEnabled" labelPlacement="end" style="margin-right: 5px;">Dark</ion-toggle>
-    </ion-buttons>
+    <ion-row style="justify-content: space-between">
+      <ion-title [ngClass]="{ 'dark-theme': darkModeEnabled }">
+        DevNews Apps
+      </ion-title>
+      <ion-row style="margin-right: 20px; align-items: center;">
+        <ion-buttons>
+          <ion-searchbar style="margin-top: 12px;" debounce="500" (ionInput)="searchNews($event)" mode="ios"></ion-searchbar>
+        </ion-buttons>
+        <ion-buttons>
+          <ion-toggle class="icon-custom" mode="ios" (ionChange)="toggleDarkMode($event)" [checked]="darkModeEnabled" labelPlacement="end">Dark</ion-toggle>
+        </ion-buttons>
+      </ion-row>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 

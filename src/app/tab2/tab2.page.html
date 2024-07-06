@@ -1,8 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      On Trending
-    </ion-title>
+    <ion-row style="justify-content: space-between">
+      <ion-title>
+        On Trending
+      </ion-title>
+      <ion-buttons>
+        <ion-searchbar style="margin-top: 12px;" debounce="500" (ionInput)="searchNews($event)" mode="ios"></ion-searchbar>
+      </ion-buttons>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
